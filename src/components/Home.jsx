@@ -16,10 +16,10 @@ const Home = () => {
           initial={{ opacity: 0, x: "-100vw" }}
           exit={{ x: "-100vw" }}
           className=" flex-1 self-center lg:pl-20 flex flex-col gap-8 px-5 justify-center lg:px-0">
-          <h1 className=" md:text-4xl font-medium tracking-widest text-2xl">
+          <h1 className=" md:text-4xl font-medium tracking-wide text-2xl">
             Everything You Need
           </h1>
-          <h1 className=" md:text-4xl font-medium tracking-widest md:ml-48 text-2xl ml-0">
+          <h1 className=" md:text-4xl font-medium tracking-wide md:ml-48 text-2xl ml-0">
             In One Place
           </h1>
           <div className="flex items-center">

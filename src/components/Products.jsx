@@ -82,7 +82,7 @@ const Products = () => {
     <div
       name="products"
       className=" container mx-auto px-5 lg:px-0 min-h-screen">
-      <h1 className=" text-4xl font-medium tracking-wider pt-20 pb-10">
+      <h1 className=" text-4xl font-medium tracking-wide pt-20 pb-10">
         Our Products
       </h1>
       <div className="my-4 hidden md:block">
@@ -216,7 +216,7 @@ const Products = () => {
         whileInView={{ opacity: 1, y: 0, transition: { duration: 1.5 } }}
         initial={{ opacity: 0, y: 100 }}
         viewport={{ once: true }}
-        className="  flex flex-wrap gap-10 py-10 justify-center lg:justify-start">
+        className="  grid grid-cols-1 justify-items-center md:grid-cols-2 gap-20 lg:grid-cols-4 py-10 2xl:grid-cols-5">
         {products.map((product) => {
           if (userCategory == "") {
             return <Product key={product.id} product={product} />;
