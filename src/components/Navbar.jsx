@@ -2,7 +2,6 @@ import React from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 const Navbar = () => {
   const { cart, cartQuantity } = useSelector((state) => state.cart);
   // console.log(cart);
@@ -10,7 +9,7 @@ const Navbar = () => {
     <nav className=" p-5 fixed w-full bg-slate-100 z-50 shadow-md">
       <ul className="flex justify-between">
         <Link to="/">
-          <li className=" uppercase font-light text-2xl">Fake Store</li>
+          <li className=" uppercase font-light text-2xl">Simpuru</li>
         </Link>
         <li>
           <Link to="/cart">

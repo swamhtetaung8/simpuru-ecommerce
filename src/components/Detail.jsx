@@ -4,10 +4,11 @@ import { useCustom } from "../context/StateProvider";
 import { GiWorld } from "react-icons/gi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { AiFillStar } from "react-icons/ai";
-import { BsFillCartPlusFill } from "react-icons/bs";
+import { BsFillCartCheckFill, BsFillCartPlusFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/counterSlice";
 import { motion } from "framer-motion";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import ScrollToTopOnMount from "./ScrollToTopOnMount";
 const Detail = () => {
   const { products } = useSelector((state) => state.cart);
@@ -34,7 +35,7 @@ const Detail = () => {
         </div>
         <div className=" flex-1">
           <div className=" flex justify-between items-center">
-            <p>{currentProduct.title}</p>
+            <p className="text-lg tracking-wide">{currentProduct.title}</p>
             <p className=" bg-gray-500 px-4 py-1 text-white rounded-full">
               ${currentProduct.originalPrice}
             </p>
@@ -58,30 +59,31 @@ const Detail = () => {
               {currentProduct.rating.count} left
             </span>
           </p>
-          <div className="flex md:gap-10 gap-5">
+          <div className="flex gap-3">
             <button
-              className={`py-2 my-2  px-3 rounded-sm  text-white w-full flex items-center justify-center gap-1 md:gap-3 transition-all duration-200 ${
+              className={`py-2 my-2  px-3 text-black bg-gray-200 border border-transparent rounded-full flex items-center justify-center gap-1 md:gap-3 transition-all duration-200 hover:bg-gray-300 ${
                 currentProduct.added
-                  ? " bg-green-400"
-                  : "bg-gray-400  hover:bg-gray-500 "
+                  ? " bg-green-400 text-white hover:bg-green-400"
+                  : ""
               }`}
               disabled={currentProduct.added}
               onClick={() => {
                 dispatch(addToCart(currentProduct));
               }}>
               {currentProduct.added ? (
-                <>Added</>
+                <BsFillCartCheckFill className="inline-block" size={25} />
               ) : (
                 <>
-                  Add to Cart{" "}
                   <BsFillCartPlusFill className="inline-block" size={25} />
                 </>
               )}
             </button>
             <Link
               to="/"
-              className={`py-3  px-3 rounded-sm my-2 text-black border border-black/40 w-full text-center hover:bg-black/80 hover:text-white transition-all duration-300`}>
-              <button>Back to Home</button>
+              className={`py-3  px-3 rounded-full my-2 text-black border border-black/40 text-center hover:bg-black/80 hover:text-white transition-all duration-300 flex items-center justify-center`}>
+              <button>
+                <IoIosArrowRoundBack size={25} />
+              </button>
             </Link>
           </div>
           <p className=" my-5">

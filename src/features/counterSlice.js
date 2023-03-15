@@ -14,6 +14,9 @@ export const cartSlice = createSlice({
     getProducts: (state, { payload }) => {
       state.products = [...payload];
     },
+    filterProducts: (state, { payload }) => {
+      return state.products.filter(product.category == payload);
+    },
     addToCart: (state, { payload }) => {
       state.products = state.products.map((product) => {
         if (product.id == payload.id) {
@@ -82,6 +85,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   checkOut,
+  filterProducts,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -2,11 +2,74 @@ import React, { useEffect, useState } from "react";
 import { useCustom } from "../context/StateProvider";
 import Product from "./Product";
 import { ImSpinner } from "react-icons/im";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { filterProducts, getProducts } from "../features/counterSlice";
 const Products = () => {
-  const { loading } = useCustom();
+  const {
+    loading,
+    userCategory,
+    setUserCategory,
+    allTab,
+    setAllTab,
+    menTab,
+    setMenTab,
+    womenTab,
+    setWomenTab,
+    electronicTab,
+    setElectronicTab,
+    jewelriesTab,
+    setjewelriesTab,
+  } = useCustom();
   const { products } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const filterCategory = (categoryname) => {
+    setUserCategory(categoryname);
+  };
+
+  const changeTab = (tabname) => {
+    switch (tabname) {
+      case "all":
+        setAllTab(true);
+        setMenTab(false);
+        setWomenTab(false);
+        setElectronicTab(false);
+        setjewelriesTab(false);
+        break;
+      case "men":
+        setAllTab(false);
+        setMenTab(true);
+        setWomenTab(false);
+        setElectronicTab(false);
+        setjewelriesTab(false);
+        break;
+      case "women":
+        setAllTab(false);
+        setMenTab(false);
+        setWomenTab(true);
+        setElectronicTab(false);
+        setjewelriesTab(false);
+        break;
+      case "electronics":
+        setAllTab(false);
+        setMenTab(false);
+        setWomenTab(false);
+        setElectronicTab(true);
+        setjewelriesTab(false);
+        break;
+      case "jewelries":
+        setAllTab(false);
+        setMenTab(false);
+        setWomenTab(false);
+        setElectronicTab(false);
+        setjewelriesTab(true);
+        break;
+      default:
+        return false;
+    }
+  };
+
   // console.log(products);
   if (loading) {
     return (
@@ -16,16 +79,153 @@ const Products = () => {
     );
   }
   return (
-    <motion.div
-      animate={{ y: 0 }}
-      initial={{ y: "100vh" }}
-      exit={{ y: "100vh" }}
-      transition={{ duration: 0.5 }}
-      className=" p-10 flex flex-wrap gap-5 pt-24 justify-center">
-      {products.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
-    </motion.div>
+    <div
+      name="products"
+      className=" container mx-auto px-5 lg:px-0 min-h-screen">
+      <h1 className=" text-4xl font-medium tracking-wider pt-20 pb-10">
+        Our Products
+      </h1>
+      <div className="my-4 hidden md:block">
+        <ul className="flex flex-wrap -mb-px text-lg md:gap-5 gap-0 font-medium text-center justify-center">
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                allTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("all");
+                filterCategory("");
+              }}>
+              All
+            </button>
+          </li>
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                menTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("men");
+                filterCategory("men's clothing");
+              }}>
+              Men
+            </button>
+          </li>
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                womenTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("women");
+                filterCategory("women's clothing");
+              }}>
+              Women
+            </button>
+          </li>
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                electronicTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("electronics");
+                filterCategory("electronics");
+              }}>
+              Electronics
+            </button>
+          </li>
+          <li>
+            <button
+              className={` p-4 border-b-2 ${
+                jewelriesTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("jewelries");
+                filterCategory("jewelery");
+              }}>
+              Jewelries
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div className="my-4 md:hidden">
+        <button
+          className={` p-4 border-b-2 ${
+            allTab ? "" : "border-transparent "
+          } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+          onClick={() => {
+            changeTab("all");
+            filterCategory("");
+          }}>
+          All
+        </button>
+
+        <ul className="grid grid-cols-2">
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                menTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("men");
+                filterCategory("men's clothing");
+              }}>
+              Men
+            </button>
+          </li>
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                womenTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("women");
+                filterCategory("women's clothing");
+              }}>
+              Women
+            </button>
+          </li>
+          <li className="mr-2">
+            <button
+              className={` p-4 border-b-2 ${
+                electronicTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("electronics");
+                filterCategory("electronics");
+              }}>
+              Electronics
+            </button>
+          </li>
+          <li>
+            <button
+              className={` p-4 border-b-2 ${
+                jewelriesTab ? "" : "border-transparent "
+              } rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
+              onClick={() => {
+                changeTab("jewelries");
+                filterCategory("jewelery");
+              }}>
+              Jewelries
+            </button>
+          </li>
+        </ul>
+      </div>
+      <motion.div
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 1.5 } }}
+        initial={{ opacity: 0, y: 100 }}
+        viewport={{ once: true }}
+        className="  flex flex-wrap gap-10 py-10 justify-center lg:justify-start">
+        {products.map((product) => {
+          if (userCategory == "") {
+            return <Product key={product.id} product={product} />;
+          } else if (product.category == userCategory) {
+            return <Product key={product.id} product={product} />;
+          }
+        })}
+      </motion.div>
+    </div>
   );
 };
 

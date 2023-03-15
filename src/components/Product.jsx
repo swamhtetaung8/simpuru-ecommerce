@@ -3,12 +3,11 @@ import { BsFillCartPlusFill, BsFillCartCheckFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../features/counterSlice";
-import ScrollToTopOnMount from "./ScrollToTopOnMount";
+import { motion } from "framer-motion";
 const Product = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <>
-      <ScrollToTopOnMount />
       <div className=" p-5 shadow-lg flex flex-col gap-3 md:w-72 w-80 transition-all duration-300 hover:scale-105">
         <img
           src={product.image}

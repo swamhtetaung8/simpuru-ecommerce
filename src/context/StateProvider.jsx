@@ -6,8 +6,15 @@ export const StateContext = createContext();
 
 export const StateProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
+  const [oriproducts, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [userCategory, setUserCategory] = useState("");
+  const [allTab, setAllTab] = useState(true);
+  const [menTab, setMenTab] = useState(false);
+  const [womenTab, setWomenTab] = useState(false);
+  const [electronicTab, setElectronicTab] = useState(false);
+  const [jewelriesTab, setjewelriesTab] = useState(false);
+
   const fetchProducts = async () => {
     const api = await fetch("https://fakestoreapi.com/products");
     const data = await api.json();
@@ -25,10 +32,26 @@ export const StateProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    dispatch(getProducts(products));
-  }, [products]);
+    dispatch(getProducts(oriproducts));
+  }, [oriproducts]);
 
-  const data = { products, setProducts, loading };
+  const data = {
+    oriproducts,
+    setProducts,
+    loading,
+    userCategory,
+    setUserCategory,
+    allTab,
+    setAllTab,
+    menTab,
+    setMenTab,
+    womenTab,
+    setWomenTab,
+    electronicTab,
+    setElectronicTab,
+    jewelriesTab,
+    setjewelriesTab,
+  };
 
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };
