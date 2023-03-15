@@ -9,7 +9,9 @@ const Navbar = () => {
     <nav className=" p-5 fixed w-full bg-slate-100 z-50 shadow-md">
       <ul className="flex justify-between">
         <Link to="/">
-          <li className=" uppercase font-light text-2xl">Simpuru</li>
+          <li className=" uppercase font-medium tracking-wide text-2xl">
+            Simpuru
+          </li>
         </Link>
         <li>
           <Link to="/cart">
