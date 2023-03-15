@@ -216,7 +216,7 @@ const Products = () => {
         whileInView={{ opacity: 1, y: 0, transition: { duration: 1.5 } }}
         initial={{ opacity: 0, y: 100 }}
         viewport={{ once: true }}
-        className="  grid grid-cols-1 justify-items-center md:grid-cols-2 gap-20 lg:grid-cols-4 py-10 2xl:grid-cols-5">
+        className="  grid grid-cols-1 justify-items-center md:grid-cols-2 gap-20 lg:grid-cols-4 py-10 ">
         {products.map((product) => {
           if (userCategory == "") {
             return <Product key={product.id} product={product} />;
